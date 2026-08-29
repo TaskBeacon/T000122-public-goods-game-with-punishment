@@ -1,0 +1,74 @@
+task_id: T000122
+generated_at: '2026-08-29T15:49:00Z'
+selection_policy: provided_source_plus_open_supporting_literature
+citation_threshold: 100
+papers:
+- id: ALSOBAY2026
+  title: Integrative experiments identify how punishment affects welfare in public
+    goods games
+  authors:
+  - Mohammed Alsobay
+  - David G. Rand
+  - Duncan J. Watts
+  - Abdullah Almaatouq
+  year: 2026
+  journal: Science
+  doi_or_url: https://doi.org/10.1126/science.aeb5280
+  citation_count: 0
+  is_high_impact: true
+  open_access: true
+  used_for:
+  - primary_protocol_source
+  - factor_space
+  - stage_order
+  - timing
+  - stimulus_layout
+  - payoff_rules
+  parameter_bindings:
+    endowment: 20
+    stage_duration_s: 45
+    source_code: https://osf.io/2d56w
+  notes: Primary paper supplied by the user; the public OSF reproducibility package
+    provides the exact Empirica source, configuration tables, and interface walkthrough.
+- id: FEHR2000
+  title: Cooperation and Punishment in Public Goods Experiments
+  authors:
+  - Ernst Fehr
+  - Simon Gächter
+  year: 2000
+  journal: American Economic Review
+  doi_or_url: https://doi.org/10.1257/aer.90.4.980
+  citation_count: 100
+  is_high_impact: true
+  open_access: true
+  used_for:
+  - standalone_group_size
+  - round_count_context
+  - two_stage_public_goods_and_punishment_logic
+  parameter_bindings:
+    group_size: 4
+    endowment: 20
+    rounds: 10
+  notes: Open manuscript copy is hosted by MIT; citation count is conservatively recorded
+    at the task-build threshold because the exact live count is not needed in provided-source-first
+    mode.
+- id: FEHR2002
+  title: Altruistic punishment in humans
+  authors:
+  - Ernst Fehr
+  - Simon Gächter
+  year: 2002
+  journal: Nature
+  doi_or_url: https://doi.org/10.1038/415137a
+  citation_count: 5702
+  is_high_impact: true
+  open_access: true
+  used_for:
+  - marginal_per_capita_return
+  - costly_punishment_semantics
+  parameter_bindings:
+    marginal_per_capita_return: 0.4
+    punishment_cost: 1
+    punishment_impact: 3
+  notes: An accessible author-hosted manuscript was used for protocol details; OpenAlex
+    cited-by count checked 2026-08-29.

@@ -1,0 +1,274 @@
+subinfo_fields:
+  - name: subject_id
+    type: int
+    constraints: {min: 101, max: 999, digits: 3}
+
+subinfo_mapping:
+  subject_id: 被试编号（三位数字）
+  Participant Information: 被试信息
+  registration_failed: 登记失败
+  registration_successful: 登记成功
+  invalid_input: "{field} 输入无效"
+
+window:
+  size: [1024, 768]
+  units: pix
+  screen: 0
+  bg_color: "#F8FAFC"
+  fullscreen: false
+  monitor_width_cm: 35.5
+  monitor_distance_cm: 60
+
+task:
+  task_name: Public Goods Game with Punishment
+  task_version: 0.1.0
+  save_path: ./outputs/sim
+  language: Chinese
+  voice_name: zh-CN-YunyangNeural
+  voice_enabled: false
+  seed_mode: same_within_sub
+  overall_seed: 122122
+  total_blocks: 8
+  total_trials: 8
+  trial_per_block: 1
+  trials_per_block: 1
+  rounds_per_condition: 1
+  conditions:
+    - chat_visible_variable
+    - chat_visible_binary
+    - chat_hidden_variable
+    - chat_hidden_binary
+    - silent_visible_variable
+    - silent_visible_binary
+    - silent_hidden_variable
+    - silent_hidden_binary
+  condition_weights: null
+  factor_profiles:
+    chat_visible_variable: {communication: true, peer_summary_visible: true, contribution_rule: variable, communication_label: 可交流, visibility_label: 可查看其他成员总结, contribution_label: 可选择 0/5/10/15/20 枚}
+    chat_visible_binary: {communication: true, peer_summary_visible: true, contribution_rule: binary, communication_label: 可交流, visibility_label: 可查看其他成员总结, contribution_label: 只能选择 0 或 20 枚}
+    chat_hidden_variable: {communication: true, peer_summary_visible: false, contribution_rule: variable, communication_label: 可交流, visibility_label: 其他成员总结隐藏, contribution_label: 可选择 0/5/10/15/20 枚}
+    chat_hidden_binary: {communication: true, peer_summary_visible: false, contribution_rule: binary, communication_label: 可交流, visibility_label: 其他成员总结隐藏, contribution_label: 只能选择 0 或 20 枚}
+    silent_visible_variable: {communication: false, peer_summary_visible: true, contribution_rule: variable, communication_label: 不可交流, visibility_label: 可查看其他成员总结, contribution_label: 可选择 0/5/10/15/20 枚}
+    silent_visible_binary: {communication: false, peer_summary_visible: true, contribution_rule: binary, communication_label: 不可交流, visibility_label: 可查看其他成员总结, contribution_label: 只能选择 0 或 20 枚}
+    silent_hidden_variable: {communication: false, peer_summary_visible: false, contribution_rule: variable, communication_label: 不可交流, visibility_label: 其他成员总结隐藏, contribution_label: 可选择 0/5/10/15/20 枚}
+    silent_hidden_binary: {communication: false, peer_summary_visible: false, contribution_rule: binary, communication_label: 不可交流, visibility_label: 其他成员总结隐藏, contribution_label: 只能选择 0 或 20 枚}
+  group_size: 4
+  peer_names: [狐狸, 猫头鹰, 熊]
+  endowment: 20
+  starting_balance: 20
+  pool_multiplier: 1.6
+  punishment_enabled: true
+  punishment_cost: 1
+  punishment_impact: 3
+  default_contribution: 0
+  continue_key: space
+  chat_keys: [f, j, k]
+  variable_contribution_keys: ["1", "2", "3", "4", "5"]
+  binary_contribution_keys: [f, j]
+  punishment_target_keys: [f, j, k]
+  punishment_amount_keys: ["1", "2", "3"]
+  no_punishment_key: space
+  key_list: ["1", "2", "3", "4", "5", f, j, k, space]
+  variable_contribution_values: {"1": 0, "2": 5, "3": 10, "4": 15, "5": 20}
+  binary_contribution_values: {f: 0, j: 20}
+  punishment_amount_values: {"1": 1, "2": 2, "3": 3, space: 0}
+  peer_chat_message: 我建议大家这轮都贡献至少 15 枚金币。
+  chat_response_labels: {f: 我同意这个建议。, j: 我会根据自己的判断决定。, k: 我建议先观察本轮结果。}
+  cognitive_domain: [social_cognition, cooperation, costly_punishment, decision_making]
+  variant: baseline
+  delta: 1
+
+timing:
+  communication_response_s: 45.0
+  no_communication_s: 2.0
+  contribution_response_s: 45.0
+  pool_outcome_s: 3.0
+  punishment_target_response_s: 45.0
+  punishment_amount_response_s: 45.0
+  summary_response_s: 45.0
+  iti_s: 0.5
+
+stimuli:
+  instruction_overview:
+    type: text
+    font: SimHei
+    text: |-
+      你将与另外三名成员组成一个小组，重复进行公共物品游戏。
+
+      每轮开始时，每人获得 20 枚金币。你可以把一部分金币投入公共池，其余金币留给自己。
+      公共池中的金币会乘以 1.6，再平均分给四名成员。因此，个人保留金币有利于自己，而共同投入可提高小组总收益。
+
+      另外三名成员由程序按照预先固定、可复现的决策计划呈现。你的选择会真实决定本轮记录的投入、惩罚成本和收益。
+
+      按空格键继续。
+    color: "#0F172A"
+    height: 27
+    wrapWidth: 1080
+    pos: [0, 0]
+  instruction_punishment:
+    type: text
+    font: SimHei
+    text: |-
+      每轮投入结果公布后，你可以付费扣减一名其他成员的收益。
+
+      每使用 1 个惩罚单位，你支付 1 枚金币，被惩罚成员损失 3 枚金币。
+      你可以选择 1、2 或 3 个惩罚单位，也可以不惩罚任何人。
+
+      惩罚没有“正确答案”。请根据自己的判断做决定。
+
+      按空格键继续。
+    color: "#0F172A"
+    height: 28
+    wrapWidth: 1060
+    pos: [0, 0]
+  instruction_factors:
+    type: text
+    font: SimHei
+    text: |-
+      任务包含 8 个规则组合，每个组合进行 2 轮。
+
+      不同组合会改变三项规则：
+      1. 小组是否可以交流；
+      2. 回合结束后是否可查看其他成员的详细总结；
+      3. 投入可以分级选择，还是只能在 0 与 20 枚之间二选一。
+
+      每个组合开始前都会清楚说明当前规则。按空格键开始。
+    color: "#0F172A"
+    height: 28
+    wrapWidth: 1060
+    pos: [0, 0]
+  block_heading: {type: text, font: SimHei, text: "规则组合 {block_num} / {total_blocks}", color: "#0F172A", height: 38, bold: true, pos: [0, 320]}
+  block_factors:
+    type: text
+    font: SimHei
+    text: "交流：{communication}\n\n回合后信息：{visibility}\n\n投入方式：{contribution}\n\n本组合共 {rounds} 轮"
+    color: "#1E293B"
+    height: 29
+    wrapWidth: 1000
+    pos: [0, 30]
+  continue_prompt: {type: text, font: SimHei, text: 按空格键继续, color: "#475569", height: 22, pos: [0, -350]}
+  communication_heading: {type: text, font: SimHei, text: 小组交流, color: "#0F172A", height: 36, bold: true, pos: [0, 330]}
+  no_communication_heading: {type: text, font: SimHei, text: 本轮交流状态, color: "#0F172A", height: 36, bold: true, pos: [0, 330]}
+  peer_message: {type: text, font: SimHei, text: "{speaker}：{message}", color: "#1D4ED8", height: 30, wrapWidth: 960, pos: [0, 100]}
+  chat_options:
+    type: text
+    font: SimHei
+    text: "F  我同意这个建议。\n\nJ  我会根据自己的判断决定。\n\nK  我建议先观察本轮结果。"
+    color: "#334155"
+    height: 26
+    wrapWidth: 900
+    alignText: left
+    pos: [0, -150]
+  no_chat_notice: {type: text, font: SimHei, text: 当前规则不允许成员之间交流。, color: "#64748B", height: 31, wrapWidth: 900, pos: [0, 0]}
+  contribution_heading: {type: text, font: SimHei, text: 决定投入公共池的金币, color: "#0F172A", height: 36, bold: true, pos: [0, 330]}
+  contribution_rule_variable:
+    type: text
+    font: SimHei
+    text: "本轮你有 {endowment} 枚金币。你可以分级决定投入多少。\n公共池将乘以 {multiplier}，再由 {group_size} 人平均分配。"
+    color: "#334155"
+    height: 27
+    wrapWidth: 1040
+    pos: [0, 90]
+  contribution_rule_binary:
+    type: text
+    font: SimHei
+    text: "本轮你有 {endowment} 枚金币。当前规则要求全部投入或全部保留。\n公共池将乘以 {multiplier}，再由 {group_size} 人平均分配。"
+    color: "#334155"
+    height: 27
+    wrapWidth: 1040
+    pos: [0, 90]
+  variable_options: {type: text, font: SimHei, text: "1  投入 0 枚     2  投入 5 枚     3  投入 10 枚     4  投入 15 枚     5  投入 20 枚", color: "#7C3AED", height: 25, wrapWidth: 1180, pos: [0, -210]}
+  binary_options: {type: text, font: SimHei, text: "F  投入 0 枚（全部保留）                         J  投入 20 枚（全部投入）", color: "#7C3AED", height: 27, wrapWidth: 1100, pos: [0, -210]}
+  pool_outcome_heading: {type: text, font: SimHei, text: 本轮公共池结果, color: "#0F172A", height: 36, bold: true, pos: [0, 335]}
+  pool_roster:
+    type: text
+    font: SimHei
+    text: "你：{own} 枚\n{peer1_name}：{peer1} 枚\n{peer2_name}：{peer2} 枚\n{peer3_name}：{peer3} 枚"
+    color: "#1E293B"
+    height: 27
+    alignText: left
+    wrapWidth: 700
+    pos: [-40, 75]
+  pool_calculation: {type: text, font: SimHei, text: "总投入 {total} × {multiplier} = {multiplied}\n{multiplied} ÷ {group_size} 人 = 每人从公共池获得 {share} 枚", color: "#047857", height: 28, wrapWidth: 1000, pos: [0, -220]}
+  punishment_heading: {type: text, font: SimHei, text: 是否付费惩罚其他成员？, color: "#0F172A", height: 36, bold: true, pos: [0, 335]}
+  punishment_roster:
+    type: text
+    font: SimHei
+    text: "{key1}  {peer1_name}：投入 {peer1} 枚\n\n{key2}  {peer2_name}：投入 {peer2} 枚\n\n{key3}  {peer3_name}：投入 {peer3} 枚"
+    color: "#1E293B"
+    height: 27
+    wrapWidth: 850
+    alignText: left
+    pos: [0, 70]
+  punishment_rule: {type: text, font: SimHei, text: "每个惩罚单位花费你 {cost} 枚，使对方损失 {impact} 枚。\n按 F/J/K 选择成员；按空格键表示不惩罚。", color: "#B45309", height: 25, wrapWidth: 1000, pos: [0, -235]}
+  punishment_amount_heading: {type: text, font: SimHei, text: 选择惩罚强度, color: "#0F172A", height: 36, bold: true, pos: [0, 310]}
+  selected_target: {type: text, font: SimHei, text: "目标成员：{target_name}", color: "#B45309", height: 31, pos: [0, 90]}
+  punishment_amount_options: {type: text, font: SimHei, text: "1  1个单位：你支付 {cost}，对方损失 {impact}\n\n2  2个单位：你支付 2，对方损失 6\n\n3  3个单位：你支付 3，对方损失 9\n\n空格键  取消惩罚", color: "#334155", height: 25, wrapWidth: 1000, alignText: left, pos: [0, -135]}
+  summary_heading: {type: text, font: SimHei, text: 本轮总结, color: "#0F172A", height: 36, bold: true, pos: [0, 340]}
+  summary_own:
+    type: text
+    font: SimHei
+    text: "你的投入：{contribution} 枚    公共池份额：{pool_share} 枚    惩罚成本：{punishment_cost} 枚\n你的本轮收益：{round_payoff} 枚    当前累计余额：{balance:.0f} 枚\n小组本轮总福利：{welfare} 枚"
+    color: "#0F172A"
+    height: 25
+    wrapWidth: 1120
+    pos: [0, 120]
+  summary_peer_visible:
+    type: text
+    font: SimHei
+    text: "其他成员详细总结\n{peer1_name}：贡献 {peer1_contribution}，本轮收益 {peer1_payoff}，被扣 {peer1_loss}\n{peer2_name}：贡献 {peer2_contribution}，本轮收益 {peer2_payoff}，被扣 {peer2_loss}\n{peer3_name}：贡献 {peer3_contribution}，本轮收益 {peer3_payoff}，被扣 {peer3_loss}"
+    color: "#334155"
+    height: 23
+    wrapWidth: 1080
+    pos: [0, -145]
+  summary_peer_hidden: {type: text, font: SimHei, text: 当前规则隐藏其他成员的详细回合总结。, color: "#64748B", height: 26, wrapWidth: 900, pos: [0, -145]}
+  fixation: {type: text, font: SimHei, text: +, color: "#64748B", height: 42, pos: [0, 0]}
+  block_break: {type: text, font: SimHei, text: "已完成 {completed} / {total} 个规则组合。\n当前累计余额：{balance:.0f} 枚。\n\n请稍作休息，按空格键继续。", color: "#0F172A", height: 29, wrapWidth: 960, pos: [0, 0]}
+  final_summary: {type: text, font: SimHei, text: "任务完成。\n\n有效回合：{rounds}\n平均投入：{mean_contribution:.2f} 枚\n惩罚单位总数：{total_punishment_units}\n平均小组福利：{mean_group_welfare:.2f} 枚\n最终累计余额：{final_balance:.0f} 枚\n\n感谢参与。按空格键退出。", color: "#0F172A", height: 28, wrapWidth: 960, pos: [0, 0]}
+
+triggers:
+  map:
+    experiment_start: 1
+    experiment_end: 2
+    block_start: 10
+    block_end: 11
+    communication_onset: 20
+    no_communication_onset: 21
+    chat_response: 22
+    chat_timeout: 23
+    contribution_variable_onset: 30
+    contribution_binary_onset: 31
+    contribution_response: 32
+    contribution_timeout: 33
+    pool_outcome_onset: 40
+    punishment_target_onset: 50
+    punishment_target_selected: 51
+    no_punishment_selected: 52
+    punishment_target_timeout: 53
+    punishment_amount_onset: 54
+    punishment_amount_response: 55
+    punishment_amount_timeout: 56
+    summary_visible_onset: 60
+    summary_hidden_onset: 61
+    summary_continue: 62
+    summary_timeout: 63
+    iti_onset: 70
+  driver: {type: serial_url, url: "loop://", baudrate: 115200, timeout: 1, prefix: [1, 225, 1, 0]}
+  policy: {strict: false}
+  timing: {post_delay_s: 0.001}
+
+sim:
+  output_dir: outputs/sim
+  seed: 122122
+  participant_id: sim122
+  session_id: sub-sim122_task-public-goods-punishment_seed122122
+  log_path: outputs/sim/sub-sim122_task-public-goods-punishment_seed122122_sim_events.jsonl
+  policy: warn
+  default_rt_s: 0.05
+  clamp_rt: true
+  enable_scaling: true
+  timing_scale: 0.02
+  min_frames: 1
+  responder:
+    type: scripted
+    kwargs: {key: null, rt_s: 0.05}

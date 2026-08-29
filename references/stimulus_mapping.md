@@ -1,0 +1,27 @@
+# Stimulus Mapping
+
+## Mapping Table
+
+| Condition | Stage/Phase | Stimulus IDs | Participant-Facing Content | Source Paper ID | Evidence (quote/figure/table) | Implementation Mode | Asset References | Notes |
+|---|---|---|---|---|---|---|---|---|
+| `chat_visible_variable` | `block_intro` | `block_heading`, `block_factors`, `continue_prompt` | Communication available; peer summary visible; choose 0/5/10/15/20 coins | `ALSOBAY2026` | OSF factors `chat=true`, `showOtherSummaries=true`, `allOrNothing=false` | `psychopy_builtin` | `n/a` | Static copy in YAML. |
+| `chat_visible_binary` | `block_intro` | `block_heading`, `block_factors`, `continue_prompt` | Communication available; peer summary visible; choose 0 or 20 coins | `ALSOBAY2026` | OSF factors `chat=true`, `showOtherSummaries=true`, `allOrNothing=true` | `psychopy_builtin` | `n/a` | Static copy in YAML. |
+| `chat_hidden_variable` | `block_intro` | `block_heading`, `block_factors`, `continue_prompt` | Communication available; peer summary hidden; graded contribution | `ALSOBAY2026` | OSF factors `chat=true`, `showOtherSummaries=false`, `allOrNothing=false` | `psychopy_builtin` | `n/a` | Static copy in YAML. |
+| `chat_hidden_binary` | `block_intro` | `block_heading`, `block_factors`, `continue_prompt` | Communication available; peer summary hidden; all-or-nothing contribution | `ALSOBAY2026` | OSF factors `chat=true`, `showOtherSummaries=false`, `allOrNothing=true` | `psychopy_builtin` | `n/a` | Static copy in YAML. |
+| `silent_visible_variable` | `block_intro` | `block_heading`, `block_factors`, `continue_prompt` | Communication unavailable; peer summary visible; graded contribution | `ALSOBAY2026` | OSF factors `chat=false`, `showOtherSummaries=true`, `allOrNothing=false` | `psychopy_builtin` | `n/a` | Static copy in YAML. |
+| `silent_visible_binary` | `block_intro` | `block_heading`, `block_factors`, `continue_prompt` | Communication unavailable; peer summary visible; all-or-nothing contribution | `ALSOBAY2026` | OSF factors `chat=false`, `showOtherSummaries=true`, `allOrNothing=true` | `psychopy_builtin` | `n/a` | Static copy in YAML. |
+| `silent_hidden_variable` | `block_intro` | `block_heading`, `block_factors`, `continue_prompt` | Communication unavailable; peer summary hidden; graded contribution | `ALSOBAY2026` | OSF factors `chat=false`, `showOtherSummaries=false`, `allOrNothing=false` | `psychopy_builtin` | `n/a` | Static copy in YAML. |
+| `silent_hidden_binary` | `block_intro` | `block_heading`, `block_factors`, `continue_prompt` | Communication unavailable; peer summary hidden; all-or-nothing contribution | `ALSOBAY2026` | OSF factors `chat=false`, `showOtherSummaries=false`, `allOrNothing=true` | `psychopy_builtin` | `n/a` | Static copy in YAML. |
+| `chat_*` | `communication` | `phase_heading`, `peer_message`, `chat_options` | Named peer proposes a contribution norm; participant selects one of three neutral replies | `ALSOBAY2026` | Released `Chat.jsx` and interface walkthrough | `psychopy_builtin` | `n/a` | Preset replies are an input adaptation. |
+| `silent_*` | `no_communication` | `phase_heading`, `no_chat_notice` | Group communication is unavailable in this block | `ALSOBAY2026` | OSF `chat=false` | `psychopy_builtin` | `n/a` | Brief fixed display. |
+| `*_variable` | `contribution` | `phase_heading`, `contribution_rule`, `variable_options` | 20-coin endowment, multiplier/equal-share rule, five graded allocations | `ALSOBAY2026` | `Contribution.jsx`; `allOrNothing=false` | `psychopy_builtin` | `n/a` | 21 integer choices discretized to five. |
+| `*_binary` | `contribution` | `phase_heading`, `contribution_rule`, `binary_options` | 20-coin endowment, multiplier/equal-share rule, keep all or contribute all | `ALSOBAY2026` | `Contribution.jsx`; `allOrNothing=true` | `psychopy_builtin` | `n/a` | Exact endpoints. |
+| `all` | `pool_outcome` | `phase_heading`, `pool_roster`, `pool_calculation` | Fox/Owl/Bear and participant contributions, total, multiplied pot, equal share | `ALSOBAY2026` | `Outcome.jsx` and `CoinResults.jsx` | `psychopy_builtin` | `n/a` | Concrete named members replace internal IDs. |
+| `all` | `punishment_target` | `phase_heading`, `punishment_roster`, `punishment_rule` | Peer contributions plus 1-cost/3-deduction rule; select Fox/Owl/Bear or none | `ALSOBAY2026`, `FEHR2002` | `Outcome.jsx`; 1:3 punishment technology | `psychopy_builtin` | `n/a` | One target per serialized round. |
+| `all` | `punishment_amount` | `phase_heading`, `selected_target`, `punishment_amount_options` | Apply 1, 2, or 3 punishment units or cancel | `ALSOBAY2026` | Outcome control increments punishment units | `psychopy_builtin` | `n/a` | Cost constrained by available balance. |
+| `*_visible_*` | `summary` | `summary_own`, `summary_peer_visible`, `continue_prompt` | Own payoff and cumulative balance plus peer contributions/payoffs | `ALSOBAY2026` | `Summary.jsx`; `showOtherSummaries=true` | `psychopy_builtin` | `n/a` | Target deduction included. |
+| `*_hidden_*` | `summary` | `summary_own`, `summary_peer_hidden`, `continue_prompt` | Own payoff and cumulative balance; peer details explicitly hidden | `ALSOBAY2026` | `Summary.jsx`; `showOtherSummaries=false` | `psychopy_builtin` | `n/a` | Participant still saw contributions before punishment. |
+| `all` | `inter_round_interval` | `fixation` | Centered `+` | `ALSOBAY2026` | Standalone phase separation not specified | `psychopy_builtin` | `n/a` | Inferred 0.5-second interval. |
+
+Accepted implementation mode used: `psychopy_builtin`.
+

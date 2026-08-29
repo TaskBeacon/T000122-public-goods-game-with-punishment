@@ -1,0 +1,20 @@
+id: T000122
+slug: public-goods-game-with-punishment
+title: Public Goods Game with Punishment
+acquisition: behavior
+variant: baseline
+cognitive_domain: [social_cognition, cooperation, costly_punishment, decision_making]
+maturity: draft
+version:
+  release_tag: v0.1.0
+contracts:
+  taps: v0.2.0
+runtime:
+  profile: psyflow
+evidence:
+  - doi: 10.1126/science.aeb5280
+    role: primary_protocol
+  - url: https://osf.io/2d56w
+    role: public_reproducibility_package
+maintainer:
+  - TaskBeacon

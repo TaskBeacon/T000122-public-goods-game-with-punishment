@@ -1,0 +1,15 @@
+{
+  "id": "ALSOBAY2026",
+  "title": "Integrative experiments identify how punishment affects welfare in public goods games",
+  "authors": ["Mohammed Alsobay", "David G. Rand", "Duncan J. Watts", "Abdullah Almaatouq"],
+  "year": 2026,
+  "journal": "Science",
+  "doi_or_url": "https://doi.org/10.1126/science.aeb5280",
+  "citation_count": 0,
+  "is_high_impact": true,
+  "open_access": true,
+  "used_for": ["primary_protocol_source", "task_workflow", "stimulus_specification", "timing_parameters"],
+  "source_kind": "url_plus_public_reproducibility_package",
+  "source_locator": "https://doi.org/10.1126/science.aeb5280",
+  "attachments": {"paper_pdf": null, "methods_path": "references/provided_methods.md", "data_code_url": "https://osf.io/2d56w"}
+}
