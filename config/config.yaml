@@ -253,6 +253,6 @@ triggers:
     summary_continue: 62
     summary_timeout: 63
     iti_onset: 70
-  driver: {type: serial_url, url: "loop://", baudrate: 115200, timeout: 1, prefix: [1, 225, 1, 0]}
+  driver: {type: mock, print_codes: true}
   policy: {strict: false}
   timing: {post_delay_s: 0.001}
